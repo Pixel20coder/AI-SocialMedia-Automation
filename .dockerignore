@@ -1,0 +1,16 @@
+node_modules
+backend/dist
+frontend/dist
+.env
+.git
+npm-debug.log*
+backend/storage/voices/*
+backend/storage/visuals/*
+backend/storage/final/*
+backend/storage/subtitles/*
+backend/storage/telemetry/*
+!backend/storage/voices/.gitkeep
+!backend/storage/visuals/.gitkeep
+!backend/storage/final/.gitkeep
+!backend/storage/subtitles/.gitkeep
+!backend/storage/telemetry/.gitkeep

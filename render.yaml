@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: ai-social-automation
+    env: docker
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: MOCK_INTEGRATIONS
+        value: true
+      - key: ENABLE_CRON
+        value: true
+      - key: MONGODB_URI
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: QUEUE_DRIVER
+        value: bullmq
+      - key: PUBLIC_API_URL
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false

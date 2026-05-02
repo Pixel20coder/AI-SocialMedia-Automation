@@ -1,0 +1,21 @@
+{
+  "name": "ai-social-automation-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-powered multi-agent social media automation system with user approval before publishing.",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace backend\" \"npm run dev --workspace frontend\"",
+    "build": "npm run build --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "seed": "npm run seed --workspace backend",
+    "start": "npm run start --workspace backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "playwright": "^1.59.1"
+  }
+}
