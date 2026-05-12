@@ -71,6 +71,7 @@ const ContentItemSchema = new mongoose.Schema(
     script: ScriptSchema,
     trendInsight: mongoose.Schema.Types.Mixed,
     ceoDecision: mongoose.Schema.Types.Mixed,
+    safetyReview: mongoose.Schema.Types.Mixed,
     assets: {
       voice: AssetSchema,
       visuals: AssetSchema,

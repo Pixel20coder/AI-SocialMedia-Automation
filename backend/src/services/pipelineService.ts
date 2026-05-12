@@ -8,6 +8,7 @@ import { agents } from "./agentRegistry";
 import { logEvent } from "./logService";
 import { markJobContent, queueNames, queueService, QueueName } from "./queueService";
 import { GeneratedAsset, TrendInsight, ViralScript } from "../types";
+import { contentSafetyService } from "./contentSafetyService";
 
 function notFound(label: string): never {
   throw Object.assign(new Error(`${label} not found`), { statusCode: 404 });
@@ -73,6 +74,8 @@ export class PipelineService {
       content.set("script", script);
       content.pipelineStage = "voice";
       await content.save();
+
+      await contentSafetyService.assertContentAllowed(account, content);
 
       const voice = await withRetry(() => agents.voice.createVoice(script, content._id.toString()), {
         retries: env.maxRetries,
@@ -163,6 +166,8 @@ export class PipelineService {
       await content.save();
 
       const trendInsight = content.trendInsight as TrendInsight;
+      await contentSafetyService.assertContentAllowed(account, content);
+
       const decision = await withRetry(() => agents.ceo.review(account, script, trendInsight), {
         retries: env.maxRetries,
         label: "ceo-agent"
@@ -283,6 +288,7 @@ export class PipelineService {
     }
 
     try {
+      await contentSafetyService.assertContentAllowed(account, content);
       await setStage(contentId, "publishing", "publishing");
       await logEvent({
         scope: "pipeline",

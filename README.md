@@ -15,6 +15,7 @@ Deployable Express + MongoDB + Redis + React system for generating hook-first sh
 - BullMQ + Redis queues for content generation, video processing, publishing, and analytics.
 - Cron automation: daily generation and hourly analytics collection.
 - Production provider adapters for Groq, OpenAI, Kimi/Moonshot, ElevenLabs, external video APIs, Instagram Reels, and YouTube Shorts.
+- Adult-glam safety gate for Instagram accounts that blocks explicit nudity, minor-coded prompts, and sexual solicitation before approval or publishing.
 
 ## Folder Structure
 
@@ -131,6 +132,14 @@ TELEGRAM_CHAT_ID=...
 ## Instagram and YouTube Automation
 
 Publishing still happens only after dashboard or Telegram approval.
+
+For adult-glam Instagram accounts, keep the account rules in the safe glamour lane:
+
+- clearly adult/18+ models only
+- bikini, lingerie, fashion, beauty, fitness, lifestyle, or premium creator aesthetic
+- no visible genitals, visible nipples, sexual acts, explicit nudity, or see-through nudity
+- no minor-coded wording or styling such as teen, schoolgirl, barely legal, or young girl
+- no sexual-solicitation captions such as DM for private, nudes, uncensored, or explicit link-in-bio promises
 
 Instagram Reels requires:
 

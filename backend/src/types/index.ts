@@ -61,3 +61,11 @@ export interface GeneratedAsset {
   url?: string;
   metadata?: Record<string, unknown>;
 }
+
+export interface SafetyReview {
+  allowed: boolean;
+  score: number;
+  category: "general" | "adult_glam" | "kids" | "unknown";
+  reasons: string[];
+  recommendations: string[];
+}
