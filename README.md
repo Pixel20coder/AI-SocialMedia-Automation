@@ -14,7 +14,7 @@ Deployable Express + MongoDB + Redis + React system for generating hook-first sh
 - MongoDB persistence for accounts, hooks, content, analytics, approvals, jobs, logs, and publish results.
 - BullMQ + Redis queues for content generation, video processing, publishing, and analytics.
 - Cron automation: daily generation and hourly analytics collection.
-- Production provider adapters for Groq, OpenAI, ElevenLabs, external video APIs, and abstract publishing.
+- Production provider adapters for Groq, OpenAI, Kimi/Moonshot, ElevenLabs, external video APIs, Instagram Reels, and YouTube Shorts.
 
 ## Folder Structure
 
@@ -113,6 +113,9 @@ Set `MOCK_INTEGRATIONS=false`, then provide:
 ```env
 GROQ_API_KEY=...
 OPENAI_API_KEY=...
+AI_CONTENT_PROVIDER=auto
+KIMI_API_KEY=...
+KIMI_MODEL=kimi-k2-0905-preview
 ELEVENLABS_API_KEY=...
 VIDEO_API_PROVIDER=runway
 VIDEO_API_KEY=...
@@ -122,6 +125,41 @@ QUEUE_DRIVER=bullmq
 TELEGRAM_BOT_TOKEN=...
 TELEGRAM_CHAT_ID=...
 ```
+
+`AI_CONTENT_PROVIDER=auto` uses Kimi when `KIMI_API_KEY` is present, otherwise OpenAI. Set `AI_CONTENT_PROVIDER=openai` or `AI_CONTENT_PROVIDER=kimi` to force one provider.
+
+## Instagram and YouTube Automation
+
+Publishing still happens only after dashboard or Telegram approval.
+
+Instagram Reels requires:
+
+```env
+MOCK_INTEGRATIONS=false
+PUBLIC_API_URL=https://your-public-api-domain.com
+INSTAGRAM_ACCESS_TOKEN=...
+INSTAGRAM_BUSINESS_ACCOUNT_ID=...
+```
+
+The generated video URL must be publicly reachable over HTTPS. Localhost media URLs cannot be uploaded to Instagram.
+
+YouTube Shorts requires either a short-lived access token:
+
+```env
+YOUTUBE_ACCESS_TOKEN=...
+YOUTUBE_PRIVACY_STATUS=private
+```
+
+or refresh-token credentials:
+
+```env
+YOUTUBE_CLIENT_ID=...
+YOUTUBE_CLIENT_SECRET=...
+YOUTUBE_REFRESH_TOKEN=...
+YOUTUBE_PRIVACY_STATUS=private
+```
+
+YouTube uploads use `videos.insert` with resumable upload. Newly created or unaudited Google API projects may force uploads to private visibility.
 
 For Telegram, point your bot webhook to:
 

@@ -38,6 +38,10 @@ export const env = {
   groqModel: process.env.GROQ_MODEL ?? "llama-3.3-70b-versatile",
   openAiApiKey: process.env.OPENAI_API_KEY,
   gptModel: process.env.GPT_MODEL ?? "gpt-4.1",
+  aiContentProvider: process.env.AI_CONTENT_PROVIDER ?? "auto",
+  kimiApiKey: process.env.KIMI_API_KEY ?? process.env.MOONSHOT_API_KEY,
+  kimiModel: process.env.KIMI_MODEL ?? "kimi-k2-0905-preview",
+  kimiBaseUrl: process.env.KIMI_BASE_URL ?? "https://api.moonshot.ai/v1",
 
   elevenLabsApiKey: process.env.ELEVENLABS_API_KEY,
   elevenLabsVoiceId: process.env.ELEVENLABS_VOICE_ID ?? "21m00Tcm4TlvDq8ikWAM",
@@ -50,8 +54,16 @@ export const env = {
   telegramChatId: process.env.TELEGRAM_CHAT_ID,
 
   instagramAccessToken: process.env.INSTAGRAM_ACCESS_TOKEN,
+  instagramBusinessAccountId: process.env.INSTAGRAM_BUSINESS_ACCOUNT_ID,
+  instagramGraphVersion: process.env.INSTAGRAM_GRAPH_VERSION ?? "v24.0",
+  instagramPublishPollAttempts: num(process.env.INSTAGRAM_PUBLISH_POLL_ATTEMPTS, 12),
+  instagramPublishPollMs: num(process.env.INSTAGRAM_PUBLISH_POLL_MS, 5000),
+  youtubeAccessToken: process.env.YOUTUBE_ACCESS_TOKEN,
+  youtubeRefreshToken: process.env.YOUTUBE_REFRESH_TOKEN,
   youtubeClientId: process.env.YOUTUBE_CLIENT_ID,
   youtubeClientSecret: process.env.YOUTUBE_CLIENT_SECRET,
+  youtubePrivacyStatus: process.env.YOUTUBE_PRIVACY_STATUS ?? "private",
+  googleTokenUri: process.env.GOOGLE_TOKEN_URI ?? "https://oauth2.googleapis.com/token",
 
   contentCron: process.env.CONTENT_CRON ?? "0 10 * * *",
   analyticsCron: process.env.ANALYTICS_CRON ?? "0 * * * *",
